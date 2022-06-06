@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Document</title>
+
+    <style>
+    #voucher_list{
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      grid-template-rows:repeat(auto);
+      gap: 10px;
+    }
+    p{
+      margin-left: 160px;
+     
+
+    }
+    button{
+      margin-left: 150px;
+    }
+
+    </style>
+  </head>
+  <body>
+    <!-- Wallet balence id:- "wallet_balance" (only number). -->
+    <!-- - The voucher card will have class :- "voucher".
+  - All the vouchers will be appended inside div with id "voucher_list".
+  - Buy button will have class:- "buy_voucher"
+  - All the purchased voucher will be stored with key :- "purchase". -->
+ <h3 id="wallet_balance"></h3>
+  <div id="voucher_list"></div>
+  <div class="voucher"></div>
+
+
+
+
+
+  </body>
+</html>
+<script>
+function myFunction(){
+  let wallet=document.getElementById("wallet_balance").value
+  let data=JSON.parse(localStorage.getItem("user"))
+}
+
+const data=JSON.parse(localStorage.getItem("user"))||[]
+
+let url=`https://masai-vouchers-api.herokuapp.com/api/vouchers`
+let voucher_list=document.getElementById("voucher_list")
+
+fetch(url)
+
+.then(function(res){
+  return res.json();
+})
+.then(function(res){
+  // console.log(res)
+  return appendData(res[0].vouchers)
+})
+
+.catch(function(err){
+  console.log(err)
+})
+
+let arr=JSON.parse(localStorage.getItem("purchase")) || []
+function appendData(data){
+  data.forEach(function(el){
+    let container=document.createElement("div")
+  
+    let name=document.createElement("P")
+    name.innerText=el.name;
+
+    let img=document.createElement("img")
+    img.src=el.image;
+
+    let price=document.createElement("p")
+    price.innerText=el.price;
+    
+    let btn=document.createElement("button")
+    btn.innerText="Buy"
+    btn.addEventListener("click",function(){
+
+    })
+  container.append(img,name,price,btn)
+  voucher_list.append(container)
+  })
+}
+
+</script>

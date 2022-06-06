@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <style>
+      #navbar{
+        display:flex;
+        background-color: aqua;
+      }
+      .raja{
+        border: 1px solid red;
+        width:30%;
+        height:400px;
+        background-color: rgb(184, 156, 102);
+        margin:auto;
+        margin-top: 50px;
+        
+
+      }
+
+      input{
+        height:30px;
+        width:300px;
+        margin-top:15px;
+        margin-left:30px; ;
+        
+       
+
+      }
+      h1{
+        text-align: center;
+      }
+      .side{
+        margin-left: 1200px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="navbar">
+      <h3>Sign Up</h3>
+      <a class="side" href="voucher.html">Purchase Voucher</a>
+    </div>
+    <div class="raja">
+      <h1>Signup</h1>
+     <form action="" id="form" onsubmit="user(event)">
+      <input type="text" placeholder="name" id="name"><br>
+      <input type="text" placeholder="email" id="email"><br>
+      <input type="text" placeholder="address" id="address"><br>
+      <input type="number" placeholder="amount" id="amount"><br>
+     <a href="voucher.html"> <input type="submit"></a><br>
+     </form>
+    </div>
+   
+    <!-- - name input box :- "name"
+  - email input box :- "email"
+  - Address input box :- "address"
+  - Amount input box :- "amount" 
+  - Submit button :- "submit"
+  - The user will be stored with key:- "user"
+  - The input fields should become empty after submitting -->
+  
+
+
+
+  </body>
+</html>
+<script>
+
+function Suser(n,e,a,am){
+  this.name=n;
+  this.email=e;
+  this.address=a;
+  this.amount=am;
+
+}
+
+
+function user(e){
+  e.preventDefault();
+  let form=document.getElementById("form")
+
+let name =form.name.value;
+let email=form.email.value;
+let address=form.address.value;
+let amount=form.amount.value;
+// console.log(name,email,address,amount);
+
+let s1 = new Suser(name,email,address,amount)
+let data=[];
+
+data.push(s1)
+ 
+localStorage.setItem("user",JSON.stringify(data));
+}
+
+
+
+
+
+</script>
